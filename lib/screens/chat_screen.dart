@@ -42,7 +42,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 }
 
                 if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-                  return const Center(child: Text("No messages yet"));
+                  return const Center(child: Text("No message yet"));
                 }
 
                 final messages = snapshot.data!.docs;
