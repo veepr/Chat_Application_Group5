@@ -6,10 +6,7 @@ import '../services/chat_service.dart';
 class ChatScreen extends StatefulWidget {
   final String chatId;
 
-  const ChatScreen({
-    super.key,
-    required this.chatId,
-  });
+  const ChatScreen({super.key, required this.chatId});
 
   @override
   State<ChatScreen> createState() => _ChatScreenState();
@@ -25,18 +22,14 @@ class _ChatScreenState extends State<ChatScreen> {
     final currentUserId = FirebaseAuth.instance.currentUser!.uid;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Chat"),
-      ),
+      appBar: AppBar(title: const Text("Chat")),
       body: Column(
         children: [
-
           /// ===== MESSAGES LIST =====
           Expanded(
             child: StreamBuilder<QuerySnapshot>(
               stream: _chatService.getMessages(widget.chatId),
               builder: (context, snapshot) {
-
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
                 }
@@ -52,7 +45,6 @@ class _ChatScreenState extends State<ChatScreen> {
                   padding: const EdgeInsets.all(10),
                   itemCount: messages.length,
                   itemBuilder: (context, index) {
-
                     final msg = messages[index];
                     final isMe = msg['senderId'] == currentUserId;
 
@@ -63,11 +55,11 @@ class _ChatScreenState extends State<ChatScreen> {
                       child: Container(
                         margin: const EdgeInsets.symmetric(vertical: 4),
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 14, vertical: 10),
+                          horizontal: 14,
+                          vertical: 10,
+                        ),
                         decoration: BoxDecoration(
-                          color: isMe
-                              ? Colors.blue
-                              : Colors.grey.shade300,
+                          color: isMe ? Colors.blue : Colors.grey.shade300,
                           borderRadius: BorderRadius.only(
                             topLeft: const Radius.circular(16),
                             topRight: const Radius.circular(16),
@@ -96,12 +88,10 @@ class _ChatScreenState extends State<ChatScreen> {
           /// ===== MESSAGE INPUT =====
           SafeArea(
             child: Container(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: 10, vertical: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
               color: Colors.white,
               child: Row(
                 children: [
-
                   /// TEXT FIELD
                   Expanded(
                     child: Container(
@@ -120,16 +110,15 @@ class _ChatScreenState extends State<ChatScreen> {
                     ),
                   ),
 
-                  const SizedBox(width: 8),
+                  const SizedBox(width: 9),
 
                   /// SEND BUTTON
                   CircleAvatar(
-                    backgroundColor: Colors.blue,
+                    backgroundColor: Colors.red,
                     child: IconButton(
                       icon: const Icon(Icons.send, color: Colors.white),
                       onPressed: () async {
                         if (_controller.text.trim().isNotEmpty) {
-
                           await _chatService.sendMessage(
                             chatId: widget.chatId,
                             text: _controller.text.trim(),
@@ -138,16 +127,13 @@ class _ChatScreenState extends State<ChatScreen> {
                           _controller.clear();
 
                           /// scroll to bottom
-                          Future.delayed(
-                            const Duration(milliseconds: 200),
-                                () {
-                              _scrollController.animateTo(
-                                _scrollController.position.maxScrollExtent,
-                                duration: const Duration(milliseconds: 300),
-                                curve: Curves.easeOut,
-                              );
-                            },
-                          );
+                          Future.delayed(const Duration(milliseconds: 200), () {
+                            _scrollController.animateTo(
+                              _scrollController.position.maxScrollExtent,
+                              duration: const Duration(milliseconds: 300),
+                              curve: Curves.easeOut,
+                            );
+                          });
                         }
                       },
                     ),
