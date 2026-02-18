@@ -11,7 +11,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-
   final AuthService _authService = AuthService();
 
   final TextEditingController emailController = TextEditingController();
@@ -32,18 +31,11 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-
-            const Text(
-              "Login",
-              style: TextStyle(fontSize: 28),
-            ),
+            const Text("Login", style: TextStyle(fontSize: 28)),
 
             const SizedBox(height: 30),
 
-            CustomTextField(
-              label: "Email",
-              controller: emailController,
-            ),
+            CustomTextField(label: "Email", controller: emailController),
 
             const SizedBox(height: 16),
 
@@ -67,15 +59,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   if (!mounted) return;
 
                   Navigator.pushReplacementNamed(context, '/home');
-
                 } catch (e) {
                   if (!mounted) return;
 
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text("Login Failed"),
-                    ),
-                  );
+                  ScaffoldMessenger.of(
+                    context,
+                  ).showSnackBar(const SnackBar(content: Text("Login Failed")));
                 }
               },
             ),
@@ -88,7 +77,6 @@ class _LoginScreenState extends State<LoginScreen> {
               },
               child: const Text("Don't have an account? Register"),
             ),
-
           ],
         ),
       ),
