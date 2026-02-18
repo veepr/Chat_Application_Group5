@@ -25,7 +25,7 @@ class ProfileScreen extends StatelessWidget {
               child: Icon(Icons.person, size: 50),
             ),
 
-            const SizedBox(height: 20),
+            const SizedBox(height: 30),
 
             // Email
             Text(
