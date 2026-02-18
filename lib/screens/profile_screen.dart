@@ -10,7 +10,7 @@ class ProfileScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Profile"),
+        title: const Text("Profiles"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
