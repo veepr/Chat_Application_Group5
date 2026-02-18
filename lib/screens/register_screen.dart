@@ -79,7 +79,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
             ),
 
-            const SizedBox(height: 16),
+            const SizedBox(height: 15),
 
             TextField(
               controller: emailController,
@@ -95,7 +95,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               controller: passwordController,
               obscureText: true,
               decoration: const InputDecoration(
-                labelText: "Password",
+                labelText: "Passwords",
                 border: OutlineInputBorder(),
               ),
             ),
